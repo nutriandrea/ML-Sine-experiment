@@ -23,9 +23,9 @@ First, we must set up the NN model's development environment. We need to install
 1. Generate 1000 samples of a sinewave.
 2. Add slight noise to your samples.
 3. Split the 1000 samples into three parts:
-    - Train Set (60%)
-    - Validate Set (20%)
-    - Test Set (20%)
+    - Train Set (80%)
+    - Validate Set (10%)
+    - Test Set (10%)
 
 Example code to generate and split the data:
 
@@ -37,8 +37,8 @@ x = np.linspace(0, 2 * np.pi, 1000)
 y = np.sin(x) + np.random.normal(0, 0.1, x.shape)
 
 # Split the data
-train_size = int(0.6 * len(x))
-validate_size = int(0.2 * len(x))
+train_size = int(0.8 * len(x))
+validate_size = int(0.1 * len(x))
 
 x_train, y_train = x[:train_size], y[:train_size]
 x_validate, y_validate = x[train_size:train_size + validate_size], y[train_size:train_size + validate_size]
@@ -101,5 +101,16 @@ with open('model.tflite', 'wb') as f:
 !xxd -i model.tflite > model.cc
 ```
 
-## Evaluate and Convert Model
+## Additional Functions
+1. Graph the Training History
+- The training history graph shows the trend of validation loss and training loss over epochs. It helps visualize how well the model is learning from the training data and if it's overfitting or underfitting.
+
+2. Compare Effectiveness
+- Compare the effectiveness between the optimized model and the original one by evaluating metrics such as loss on the test dataset and comparing prediction accuracy.
+
+## Conclusion
 This README.md file provides a step-by-step guide to setting up the development environment, preparing the data, defining and training the NN, and evaluating and converting the model. Follow these instructions to successfully complete the ML-Sine-experiment.
+
+
+
+
